@@ -5,10 +5,9 @@ const app = express();
 
 // Middleware to parse JSON
 app.use(express.json());
-console.log(process.env.MONGO_ATLAS);
 
 // Connect to MongoDB
-mongoose.connect("mongodb+srv://sushantkeshri2603:susu1213@cluster0.xldfk.mongodb.net/?retryWrites=true&w=majority", {
+mongoose.connect(process.env.MONGO_ATLAS, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 })
