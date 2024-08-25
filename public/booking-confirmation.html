@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Confirmation</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
+            padding: 50px;
+            margin: 0;
+        }
+
+        h1 {
+            color: #4CAF50;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            animation: fadeInDown 1s ease-in-out;
+        }
+
+        #confirmation-message {
+            font-size: 1.5em;
+            color: #333;
+            margin-bottom: 20px;
+            animation: fadeIn 1.5s ease-in-out;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+            font-size: 1.2em;
+            animation: fadeInUp 1.5s ease-in-out;
+        }
+
+        li {
+            margin: 10px 0;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1em;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease-in-out;
+            margin: 10px;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeInDown {
+            0% {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Booking Confirmation</h1>
+
+    <p id="confirmation-message">Your EV charging slot has been successfully booked!</p>
+
+    <h3>Booking Details:</h3>
+    <ul>
+        <li><strong>Location:</strong> <span id="booking-location"></span></li>
+        <li><strong>Date:</strong> <span id="booking-date"></span></li>
+        <li><strong>Time:</strong> <span id="booking-time"></span></li>
+    </ul>
+
+    <br>
+    <button onclick="window.location.href='/booking.html';">Book Another Slot</button>
+    <button onclick="window.location.href='viewbooking.html';">View My Bookings</button>
+
+    <script>
+        // Retrieve booking details from session storage
+        document.getElementById('booking-location').textContent = sessionStorage.getItem('location');
+        document.getElementById('booking-date').textContent = sessionStorage.getItem('date');
+        document.getElementById('booking-time').textContent = sessionStorage.getItem('time');
+    </script>
+
+</body>
+
+</html>

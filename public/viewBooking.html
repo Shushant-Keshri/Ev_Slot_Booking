@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Bookings</title>
+    <style>
+
+        .container {
+            background-color: rgba(198, 224, 225, 0.81);
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        h1 {
+            color: #4CAF50;
+            font-size: 2em;
+            margin: 0;
+            padding: 0;
+        }
+
+        .card-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .card {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 300px;
+            padding: 20px;
+            text-align: left;
+            transition: transform 0.3s, box-shadow 0.3s;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .card h2 {
+            font-size: 1.5em;
+            margin: 0 0 10px 0;
+            color: #4CAF50;
+        }
+
+        .card p {
+            margin: 5px 0;
+            font-size: 1em;
+            color: #333;
+        }
+
+        #error-message {
+            color: red;
+            margin-top: 20px;
+        }
+
+        .center-button {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .button {
+            padding: 12px 34px;
+            background-color: #b60505;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .button:hover {
+            background-color: #45a049;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>All Bookings</h1>
+        <div class="card-container" id="bookings-container">
+            <!-- Booking cards will be injected here -->
+        </div>
+        <div id="error-message"></div>
+    </div>
+    <div class="center-button">
+        <button class="button" ><a href="/booking-confirmation.html" style="color: white;">Go Back</a> </button>
+    </div>
+    <script>
+        async function fetchBookings() {
+            try {
+                const response = await fetch('/api/viewBookings');
+                const bookings = await response.json();
+                const container = document.getElementById('bookings-container');
+
+                if (bookings.length === 0) {
+                    document.getElementById('error-message').textContent = 'No bookings available.';
+                    return;
+                }
+
+                bookings.forEach(booking => {
+                    const card = document.createElement('div');
+                    card.className = 'card';
+                    card.innerHTML = `
+                        <h2>${booking.location}</h2>
+                        <p><strong>Date:</strong> ${booking.date}</p>
+                        <p><strong>Time:</strong> ${booking.time}</p>
+                    `;
+                    container.appendChild(card);
+                });
+            } catch (error) {
+                document.getElementById('error-message').textContent = 'Error fetching bookings.';
+            }
+        }
+
+        fetchBookings();
+    </script>
+</body>
+</html>

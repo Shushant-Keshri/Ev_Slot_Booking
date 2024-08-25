@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EV Charging Slot Booking</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f4f7;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background-color: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            animation: slideIn 1s ease-in-out;
+        }
+
+        h1 {
+            color: #4CAF50;
+            font-size: 2em;
+            margin-bottom: 20px;
+            animation: fadeInDown 1s ease-in-out;
+        }
+
+        .booking-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            animation: fadeInUp 1.5s ease-in-out;
+        }
+
+        label {
+            font-size: 1.1em;
+            color: #333;
+        }
+
+        select, input {
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 1em;
+            transition: border-color 0.3s;
+        }
+
+        select:focus, input:focus {
+            border-color: #4CAF50;
+            outline: none;
+        }
+
+        button {
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #4CAF50;
+            color: white;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        #result {
+            margin-top: 20px;
+            color: #333;
+            font-size: 1.2em;
+        }
+
+        @keyframes slideIn {
+            0% {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInDown {
+            0% {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Book Your EV Charging Slot</h1>
+        <form class="booking-form" id="booking-form">
+            <label for="location">Select Location:</label>
+            <select id="location">
+                <option value="cinema">Cinema Hall</option>
+                <option value="school">School</option>
+                <option value="office">Office</option>
+            </select>
+
+            <label for="date">Select Date:</label>
+            <input type="date" id="date">
+
+            <label for="time">Select Time:</label>
+            <input type="time" id="time">
+
+            <button type="submit">Book Slot</button>
+        </form>
+        <div id="result"></div>
+
+        <script>
+            document.getElementById('booking-form').addEventListener('submit', async function (e) {
+                e.preventDefault();
+
+                const location = document.getElementById('location').value;
+                const date = document.getElementById('date').value;
+                const time = document.getElementById('time').value;
+
+                const response = await fetch('/api/book-slot', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ location, date, time })
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    // Store booking details in session storage
+                    sessionStorage.setItem('location', location);
+                    sessionStorage.setItem('date', date);
+                    sessionStorage.setItem('time', time);
+
+                    // Redirect to confirmation page
+                    window.location.href = '/booking-confirmation.html';
+                } else {
+                    document.getElementById('result').textContent = data.message;
+                }
+            });
+        </script>
+    </div>
+</body>
+
+</html>

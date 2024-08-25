@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="stylesheet" href="login.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <style>
+        /* Basic Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f4f7;
+            margin: 0;
+        }
+
+        .wrapper {
+            background-color: rgb(62, 79, 26);
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+            animation: slideIn 1s ease-in-out;
+        }
+
+        h1 {
+            margin-bottom: 30px;
+            font-size: 2em;
+            color: white;
+            animation: fadeInDown 1s ease-in-out;
+        }
+
+        .input-box {
+            position: relative;
+            margin-bottom: 20px;
+            animation: fadeInUp 1.5s ease-in-out;
+        }
+
+        .input-box input {
+            
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1em;
+            transition: border-color 0.3s ease;
+        }
+
+        .input-box input:focus {
+            border-color: #4CAF50;
+            outline: none;
+        }
+
+        .input-box i {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #ccc;
+        }
+
+        /* Button Styles */
+        .button {
+            display: flex;
+            justify-content: center;
+            background-color: gray;
+            opacity: 0.5;
+            cursor: not-allowed;
+            border: none;
+            padding: 10px 20px;
+            color: white;
+            border-radius: 5px;
+            width: 80%;
+            font-size: 1.1em;
+            transition: background-color 0.3s, opacity 0.3s, cursor 0.3s;
+        }
+
+        .button.active {
+            background-color: #4CAF50;
+            opacity: 1;
+            cursor: pointer;
+        }
+
+        .register-link {
+            color: white;
+            margin-top: 20px;
+            animation: fadeInUp 2s ease-in-out;
+        }
+
+        .register-link a {
+            color: #4CAF50;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .register-link a:hover {
+            color: #45a049;
+        }
+
+        /* Animations */
+        @keyframes slideIn {
+            0% {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInDown {
+            0% {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <form id="registerForm">
+            <h1>Register</h1>
+            <div class="input-box">
+                <input type="text" id="username" placeholder="Username" required>
+                <i class='bx bxs-user'></i>
+            </div>
+            <div class="input-box">
+                <input type="email" id="email" placeholder="Email" required>
+                <i class='bx bx-envelope'></i>
+            </div>
+            <div class="input-box">
+                <input type="password" id="password" placeholder="Password" required>
+                <i class='bx bxs-lock-alt'></i>
+            </div>
+            <button type="submit" id="registerButton" class="button" disabled>Register</button>
+            <div class="register-link">
+                <p>Already have an account? <a href="./index2.html">Login</a></p>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        const form = document.getElementById('registerForm');
+        const usernameInput = document.getElementById('username');
+        const emailInput = document.getElementById('email');
+        const passwordInput = document.getElementById('password');
+        const registerButton = document.getElementById('registerButton');
+
+        // Function to check if all inputs are filled
+        function checkInputs() {
+            const isUsernameFilled = usernameInput.value.trim() !== '';
+            const isEmailFilled = emailInput.value.trim() !== '';
+            const isPasswordFilled = passwordInput.value.trim() !== '';
+
+            // Enable or disable the register button based on input values
+            if (isUsernameFilled && isEmailFilled && isPasswordFilled) {
+                registerButton.disabled = false;
+                registerButton.classList.add('active');
+            } else {
+                registerButton.disabled = true;
+                registerButton.classList.remove('active');
+            }
+        }
+
+        // Add event listeners to input fields to check on each input
+        usernameInput.addEventListener('input', checkInputs);
+        emailInput.addEventListener('input', checkInputs);
+        passwordInput.addEventListener('input', checkInputs);
+
+        // Optional: Handle form submission
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
+            alert('Registration form submitted successfully!');
+            window.location.href = './index2.html';
+        });
+    </script>
+</body>
+
+</html>

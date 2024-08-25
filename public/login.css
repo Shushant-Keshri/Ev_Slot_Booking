@@ -1,0 +1,128 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    font-family:"poppins",sans-serif;
+}                                                  
+body{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background:url(images.jpeg) no-repeat;
+    background-size: cover;
+    background-position: center;
+    
+}
+.wrapper{
+    width:420px;
+    background: rgb(135, 37, 215);
+    color: white;
+    border-radius: 12px;
+    padding: 30px 40px ;
+
+}
+.wrapper h1{
+    font-size: 39px;
+    align-items: center;
+    
+
+}
+.wrapper .input-box{
+    position: relative;
+    height: 50px;
+    width: 100%;
+    /* background-color: rgb(234, 230, 237); */
+    margin: 20px 0;
+}
+.input-box input{
+    height: 100%;
+    width: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    border: 2px solid red;
+    border-radius: 20px;
+    color: white;
+    font-size: 20px;
+    padding: 20px 45px 20px 20px ;
+}
+.input-box input::placeholder{
+    color: white;
+}
+.input-box i{
+    position: absolute;
+    right: 20px;
+    top: 30%;
+    transform: translate(-50);
+    font-size: 30px;
+}
+.wrapper .remember-forgot{
+    display: flex;
+    justify-content: space-between;
+    font-size: 18.5px;
+    margin: -15px 0px 15px;
+}
+.remember-forgot label input{
+    accent-color: white;
+    margin-right: 3px;
+
+}
+.remember-forgot a{
+    color: white;
+    text-decoration: none;
+
+
+}
+.remember-forgot a:hover{
+    text-decoration: underline;
+    
+}
+.button {
+    width: 100%;
+    height: 45px;
+    background: white;
+    /* border */
+    /* outline: none; */
+    border-radius: 10px;
+    /* box-shadow: 0 0 10px rgb(0, 0, 0, -1); */
+    cursor: pointer;
+    /* font-size: 46px; */
+    color: aquamarine;
+    padding: .2rem 6rem;
+    margin-left: 3rem;
+    
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+.wrapper .btn{
+    width: 100%;
+    height: 45px;
+    background: white;
+    border: none;
+    outline: none;
+    border-radius: 40px;
+    box-shadow: 0 0 10px rgb(0, 0, 0, -1);
+    cursor: pointer;
+    font-size: 17px;
+    color: aquamarine;
+    font-weight: 600;
+}
+.wrapper .register-link{
+    font-size:15px ;
+    text-align:center ;
+    margin: 20px o 15px;
+}
+.register-link p a{
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+
+}
+.register-link{
+    margin-top: 1.5rem;
+   
+}
+.register-link p a:hover{
+    text-decoration: underline;
+}

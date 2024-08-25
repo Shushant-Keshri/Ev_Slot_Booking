@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="login.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <style>
+        /* Basic Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f4f7;
+            margin: 0;
+        }
+
+        .wrapper {
+            background-color: #0a0909;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+            animation: slideIn 1s ease-in-out;
+        }
+
+        h1 {
+            margin-bottom: 30px;
+            font-size: 2em;
+            color: #4CAF50;
+            animation: fadeInDown 1s ease-in-out;
+        }
+
+        .input-box {
+            position: relative;
+            margin-bottom: 20px;
+            animation: fadeInUp 1.5s ease-in-out;
+        }
+
+        .input-box input {
+            width: 100%;
+            padding: 10px;
+            background: #7b6d6d33;
+            border: 2px solid #3c2e2e;
+            border-radius: 5px;
+            font-size: 1em;
+            color: white;
+            transition: border-color 0.3s ease;
+        }
+
+        .input-box input:focus {
+            border-color: #4CAF50;
+            outline: none;
+        }
+
+        .input-box i {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #5da5d6;
+        }
+
+        .remember-forgot {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.9em;
+            margin-bottom: 20px;
+        }
+
+        .remember-forgot a {
+            color: #4CAF50;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .remember-forgot a:hover {
+            color: #45a049;
+        }
+
+        /* Button Styles */
+        .button {
+            display: flex;
+            justify-content: center;
+            width: 80%;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            font-size: 1.1em;
+            cursor: not-allowed;
+            background-color: gray;
+            opacity: 0.5;
+            transition: background-color 0.3s, opacity 0.3s, cursor 0.3s;
+        }
+
+        .button.active {
+            background-color: #4CAF50;
+            opacity: 1;
+            cursor: pointer;
+        }
+
+        /* Animations */
+        @keyframes slideIn {
+            0% {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInDown {
+            0% {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <form id="loginForm">
+            <h1>Login</h1>
+            <div class="input-box">
+                <input type="text" id="username" placeholder="Username" required>
+                <i class='bx bxs-user'></i>
+            </div>
+            <div class="input-box">
+                <input type="password" id="password" placeholder="Password" required>
+                <i class='bx bxs-lock-alt'></i>
+            </div>
+            <div class="remember-forgot">
+                <label><input type="checkbox"> Remember me</label>
+                <a href="./forget.html">Forgot password?</a>
+            </div>
+            <button type="submit" id="loginButton" class="button" disabled>Login</button>
+            <div class="register-link">
+                <p>Don't have an account? <a href="./register.html">Register</a></p>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        const form = document.getElementById('loginForm');
+        const usernameInput = document.getElementById('username');
+        const passwordInput = document.getElementById('password');
+        const loginButton = document.getElementById('loginButton');
+
+        function checkInputs() {
+            const isUsernameFilled = usernameInput.value.trim() !== '';
+            const isPasswordFilled = passwordInput.value.trim() !== '';
+
+            if (isUsernameFilled && isPasswordFilled) {
+                loginButton.disabled = false;
+                loginButton.classList.add('active');
+            } else {
+                loginButton.disabled = true;
+                loginButton.classList.remove('active');
+            }
+        }
+
+        usernameInput.addEventListener('input', checkInputs);
+        passwordInput.addEventListener('input', checkInputs);
+
+        form.addEventListener('submit', function (event) {
+            event.preventDefault();
+            alert('Login form submitted successfully!');
+            window.location.href = './booking.html';
+        });
+    </script>
+</body>
+
+</html>

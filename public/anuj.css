@@ -1,0 +1,68 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.container {
+    background-color: rgb(90, 245, 108);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+}
+
+.booking-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+input, select, button {
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+
+button {
+    background-color: #28a745;
+    color: white;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #218838;
+}
+
+#result {
+    margin-top: 20px;
+    text-align: center;
+}
+ .container {
+    background-image: url('imageas.png.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 100vh; /* Ensure it takes the full viewport height */
+     display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+} 
+h1 {
+    color: white;
+}
+
+.booking-form {
+    background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background for the form */
+    padding: 20px;
+    border-radius: 10px;
+    color: white;
+}
